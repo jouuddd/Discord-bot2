@@ -2,7 +2,6 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const http = require('http');
 
-‎// إنشاء خادم بسيط لإبقاء البوت شغال 24/7
 http.createServer((req, res) => {
     res.write("Bot is alive!");
     res.end();
@@ -33,7 +32,7 @@ function connectToVoice() {
             selfDeaf: true,
             selfMute: true
         });
-        console.log("تم الاتصال بالروم الصوتية بحالة Deafen!");
+        console.log("تم الاتصال بالروم الصوتية بنجاح!");
     } catch (error) {
         console.error("خطأ في الاتصال:", error);
     }
@@ -42,8 +41,6 @@ function connectToVoice() {
 client.once('ready', () => {
     console.log(`تم تسجيل الدخول باسم: ${client.user.tag}`);
     connectToVoice();
-    
-‎    // إعادة محاولة الاتصال كل 5 دقائق لضمان عدم الخروج
     setInterval(connectToVoice, 300000);
 });
 
